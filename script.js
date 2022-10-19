@@ -6,27 +6,28 @@ let display = "4 / 3"; //screen;
 displayArray = display.split(" ");
 console.log(displayArray);
 
-while (displayArray.length > 1) {
-  switch (displayArray[1]) {
-    case "+":
-      add(displayArray[0], displayArray[2]);
-      break;
-    case "-":
-      subtract(displayArray[0], displayArray[2]);
-      break;
-    case "X":
-      multiply(displayArray[0], displayArray[2]);
-      break;
-    case "/":
-      divide(displayArray[0], displayArray[2]);
+function runCalculator() {
+  while (displayArray.length > 1) {
+    switch (displayArray[1]) {
+      case "+":
+        add(displayArray[0], displayArray[2]);
+        break;
+      case "-":
+        subtract(displayArray[0], displayArray[2]);
+        break;
+      case "X":
+        multiply(displayArray[0], displayArray[2]);
+        break;
+      case "/":
+        divide(displayArray[0], displayArray[2]);
+    }
+    solution = solution.toFixed(2);
+    displayArray[2] = solution;
+    displayArray.shift();
+    displayArray.shift();
+    console.log(displayArray);
   }
-  solution = solution.toFixed(2);
-  displayArray[2] = solution;
-  displayArray.shift();
-  displayArray.shift();
-  console.log(displayArray);
 }
-
 console.log("test end");
 
 function add(a, b) {
@@ -90,3 +91,6 @@ btnMultiply.onclick = () => (screen = screen + " X ");
 
 const btnDivide = document.querySelector("#buttonDivide");
 btnDivide.onclick = () => (screen = screen + " / ");
+
+const btnEnter = document.querySelector("#buttonEnter");
+btnEnter.addEventListener("click", runCalculator);
