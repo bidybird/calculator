@@ -105,7 +105,7 @@ btnDivide.onclick = () => {
 };
 
 const btnEnter = document.querySelector("#buttonEnter");
-btnEnter.addEventListener("click", runCalculator);
+btnEnter.addEventListener("click", isEndNumber);
 
 const btnClear = document.querySelector("#clearButton");
 btnClear.onclick = () => (screen = "");
@@ -132,5 +132,21 @@ function runIfOperator() {
     ) {
       runCalculator();
     }
+  }
+}
+
+//if the end of the screen / display is not a number do not use the function run calculator
+function isEndNumber() {
+  let splitScreen = screen;
+  if (
+    splitScreen.endsWith(" ") ||
+    splitScreen.endsWith("+") ||
+    splitScreen.endsWith("-") ||
+    splitScreen.endsWith("x") ||
+    splitScreen.endsWith("/")
+  ) {
+    return screen;
+  } else {
+    runCalculator();
   }
 }
