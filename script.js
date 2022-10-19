@@ -1,12 +1,11 @@
 let screen = "";
-document.querySelector("#display").textContent = screen;
-
 let solution = 0;
-let display = "4 / 3"; //screen;
-displayArray = display.split(" ");
-console.log(displayArray);
+let display = "";
 
 function runCalculator() {
+  display = screen;
+  displayArray = display.split(" ");
+
   while (displayArray.length > 1) {
     switch (displayArray[1]) {
       case "+":
@@ -15,7 +14,7 @@ function runCalculator() {
       case "-":
         subtract(displayArray[0], displayArray[2]);
         break;
-      case "X":
+      case "x":
         multiply(displayArray[0], displayArray[2]);
         break;
       case "/":
@@ -25,10 +24,9 @@ function runCalculator() {
     displayArray[2] = solution;
     displayArray.shift();
     displayArray.shift();
-    console.log(displayArray);
   }
+  screen = solution;
 }
-console.log("test end");
 
 function add(a, b) {
   solution = Number(a) + Number(b);
@@ -44,10 +42,12 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b == 0) {
-    solution = undefined;
-    return console.log("You can't divide by zero");
+    solution = "You can't divide by zero.";
+    screen = "You can't divide by zero.";
+    return "You can't divide by zero";
+  } else {
+    solution = a / b;
   }
-  solution = a / b;
 }
 
 const btn1 = document.querySelector("#buttonOne");
@@ -87,7 +87,7 @@ const btnSubtract = document.querySelector("#buttonSubtract");
 btnSubtract.onclick = () => (screen = screen + " - ");
 
 const btnMultiply = document.querySelector("#buttonMultiply");
-btnMultiply.onclick = () => (screen = screen + " X ");
+btnMultiply.onclick = () => (screen = screen + " x ");
 
 const btnDivide = document.querySelector("#buttonDivide");
 btnDivide.onclick = () => (screen = screen + " / ");
@@ -95,9 +95,15 @@ btnDivide.onclick = () => (screen = screen + " / ");
 const btnEnter = document.querySelector("#buttonEnter");
 btnEnter.addEventListener("click", runCalculator);
 
+const btnClear = document.querySelector("#clearButton");
+btnClear.onclick = () => (screen = "");
+
 const btnAny = document.querySelectorAll("button");
 btnAny.forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelector("#display").textContent = screen;
   });
 });
+
+const btnDel = document.querySelector("#buttonDelete");
+btnDel.onclick = () => (screen = screen.slice(0, screen.length - 1));
