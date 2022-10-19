@@ -1,14 +1,41 @@
 let solution = 0;
+let display = "4 X 3";
+displayArray = display.split(" ");
+console.log(displayArray);
+
+while (displayArray.length > 1) {
+  switch (displayArray[1]) {
+    case "+":
+      add(displayArray[0], displayArray[2]);
+      break;
+    case "-":
+      subtract(displayArray[0], displayArray[2]);
+      break;
+    case "X":
+      multiply(displayArray[0], displayArray[2]);
+      break;
+    case "/":
+      divide(displayArray[0], displayArray[2]);
+  }
+
+  displayArray[2] = solution;
+  displayArray.shift();
+  displayArray.shift();
+  console.log(displayArray);
+}
+
+console.log("test end");
+
 function add(a, b) {
-  solution = a + b;
+  solution = Number(a) + Number(b);
 }
 
 function subtract(a, b) {
-  solution = a - b;
+  solution = Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-  solution = a * b;
+  solution = Number(a) * Number(b);
 }
 
 function divide(a, b) {
