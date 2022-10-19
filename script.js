@@ -1,5 +1,5 @@
 let solution = 0;
-let display = "4 X 3";
+let display = "4 / 3";
 displayArray = display.split(" ");
 console.log(displayArray);
 
@@ -17,7 +17,7 @@ while (displayArray.length > 1) {
     case "/":
       divide(displayArray[0], displayArray[2]);
   }
-
+  solution = solution.toFixed(2);
   displayArray[2] = solution;
   displayArray.shift();
   displayArray.shift();
