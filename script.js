@@ -94,3 +94,10 @@ btnDivide.onclick = () => (screen = screen + " / ");
 
 const btnEnter = document.querySelector("#buttonEnter");
 btnEnter.addEventListener("click", runCalculator);
+
+const btnAny = document.querySelectorAll("button");
+btnAny.forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelector("#display").textContent = screen;
+  });
+});
