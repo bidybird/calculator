@@ -81,16 +81,28 @@ const btn0 = document.querySelector("#buttonZero");
 btn0.onclick = () => (screen = screen + "0");
 
 const btnAdd = document.querySelector("#buttonAdd");
-btnAdd.onclick = () => (screen = screen + " + ");
+btnAdd.onclick = () => {
+  runIfOperator();
+  screen = screen + " + ";
+};
 
 const btnSubtract = document.querySelector("#buttonSubtract");
-btnSubtract.onclick = () => (screen = screen + " - ");
+btnSubtract.onclick = () => {
+  runIfOperator();
+  screen = screen + " - ";
+};
 
 const btnMultiply = document.querySelector("#buttonMultiply");
-btnMultiply.onclick = () => (screen = screen + " x ");
+btnMultiply.onclick = () => {
+  runIfOperator();
+  screen = screen + " x ";
+};
 
 const btnDivide = document.querySelector("#buttonDivide");
-btnDivide.onclick = () => (screen = screen + " / ");
+btnDivide.onclick = () => {
+  runIfOperator();
+  screen = screen + " / ";
+};
 
 const btnEnter = document.querySelector("#buttonEnter");
 btnEnter.addEventListener("click", runCalculator);
@@ -107,3 +119,18 @@ btnAny.forEach((button) => {
 
 const btnDel = document.querySelector("#buttonDelete");
 btnDel.onclick = () => (screen = screen.slice(0, screen.length - 1));
+
+function runIfOperator() {
+  let splitScreen = screen;
+  splitScreen = splitScreen.split("");
+  for (let i = 0; i < splitScreen.length; i++) {
+    if (
+      splitScreen[i] === "+" ||
+      splitScreen[i] === "-" ||
+      splitScreen[i] === "x" ||
+      splitScreen[i] === "/"
+    ) {
+      runCalculator();
+    }
+  }
+}
